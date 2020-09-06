@@ -21,7 +21,7 @@
             margin: 200px auto;
             transform-style: preserve-3d;
             transform: rotateX(45deg) rotateZ(45deg);
-            animation: rotate 20s infinite alternate;
+            animation: rotate 50s infinite alternate;
             transition: 1s;
         }
 
@@ -71,9 +71,68 @@
                 transform: rotateZ(0) rotateX(0);
             }
             50%{
-                transform: rotateZ(1turn) rotateX(1turn);
+                transform: rotateZ(1turn) rotateX(2turn) rotateY(3turn);
             }
         }
+
+        a {
+            position: absolute;
+            width: 400px;
+            height: 120px;
+            top: 720px;
+            left: 50%;
+            line-height: 120px;
+            font-size: 45px;
+            font-family: sans-serif;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            border-radius: 60px;
+            background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+            background-size: 400%;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        @keyframes stream {
+            from, to {
+                background-position: 0%;
+            }
+            50% {
+                background-position: 100%;
+            }
+        }
+
+
+        a::before {
+            content: '';
+            position: absolute;
+            background: #ff253a;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            top: -5px;
+            opacity: .8;
+            background: linear-gradient(
+                    90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+            border-radius: 40px;
+            background-size: 400%;
+            filter: blur(20px);
+            opacity: 0;
+            transition: 1s;
+            z-index: -1;
+        }
+
+        a:hover{
+            animation: stream 8s infinite alternate linear;
+        }
+        a:hover::before{
+            animation: stream 8s infinite alternate linear;
+            opacity: 1;
+        }
+
 
 
     </style>
@@ -87,5 +146,6 @@
     <div class="forward"></div>
     <div class="after"></div>
 </div>
+<a>Streamer</a>
 </body>
 </html>
