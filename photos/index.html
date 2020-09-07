@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>相册盒子</title>
     <link rel="icon" href="img/favicon.jpg">
-    <mata name="viewport" content="width=device-width,initial scale=1.0"></mata>
+<!--    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>-->
     <style>
         html {
             perspective: 800px;
@@ -43,19 +43,19 @@
         }
 
         .outer:hover .box > .left {
-            transform: rotateY(90deg) translateZ(300px);
+            transform: rotateY(270deg) translateZ(300px);
         }
 
         .outer:hover .box > .right {
-            transform: rotateY(-90deg) translateZ(300px);
+            transform: rotateY(-270deg) translateZ(300px);
         }
 
         .outer:hover .box > .top {
-            transform: rotateX(90deg) translateZ(300px);
+            transform: rotateX(270deg) translateZ(300px);
         }
 
         .outer:hover .box > .bottom {
-            transform: rotateX(-90deg) translateZ(300px);
+            transform: rotateX(-270deg) translateZ(300px);
         }
 
         .outer:hover .box > .forward {
@@ -72,6 +72,7 @@
             position: absolute;
             opacity: .9;
             background-size: cover;
+            transition: 2s;
         }
 
         .left {
