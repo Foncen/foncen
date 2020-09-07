@@ -13,64 +13,101 @@
             margin: 0px;
             padding: 0px;
             background-color: black;
+            overflow: hidden;
+        }
+
+        .outer {
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            border-radius: 50%;
         }
 
         .box {
             width: 300px;
             height: 300px;
-            margin: 200px auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: auto;
             transform-style: preserve-3d;
             transform: rotateX(45deg) rotateZ(45deg);
-            animation: rotate 50s infinite alternate;
-            transition: 1s;
+            animation: rotate 50s infinite linear;
+        }
+
+        .pause {
+            animation-play-state: paused;
+        }
+
+        .outer:hover .box > .left {
+            transform: rotateY(90deg) translateZ(300px);
+        }
+
+        .outer:hover .box > .right {
+            transform: rotateY(-90deg) translateZ(300px);
+        }
+
+        .outer:hover .box > .top {
+            transform: rotateX(90deg) translateZ(300px);
+        }
+
+        .outer:hover .box > .bottom {
+            transform: rotateX(-90deg) translateZ(300px);
+        }
+
+        .outer:hover .box > .forward {
+            transform: rotateX(180deg) translateZ(300px);
+        }
+
+        .outer:hover .box > .after {
+            transform: translateZ(300px);
         }
 
         .box > div {
             width: 300px;
             height: 300px;
             position: absolute;
+            opacity: .9;
+            background-size: cover;
         }
 
         .left {
             background-image: url("./img/1.jpg");
-            background-size: cover;
             transform: rotateY(90deg) translateZ(150px);
         }
+
         .right {
             background-image: url("./img/2.jpg");
-            background-size: cover;
             transform: rotateY(-90deg) translateZ(150px);
         }
 
         .top {
             background-image: url("./img/3.jpg");
-            background-size: cover;
             transform: rotateX(90deg) translateZ(150px);
         }
 
-        .bottom{
+        .bottom {
             background-image: url("./img/4.jpg");
-            background-size: cover;
             transform: rotateX(-90deg) translateZ(150px);
         }
 
         .forward {
             background-image: url("./img/5.jpg");
-            background-size: cover;
             transform: translateZ(150px);
         }
 
         .after {
             background-image: url("./img/6.jpg");
-            background-size: cover;
-            transform: translateZ(-150px);
+            transform: rotateX(180deg) translateZ(150px);
         }
 
         @keyframes rotate {
-            from,to{
+            from, to {
                 transform: rotateZ(0) rotateX(0);
             }
-            50%{
+            50% {
                 transform: rotateZ(1turn) rotateX(2turn) rotateY(3turn);
             }
         }
@@ -79,7 +116,7 @@
             position: absolute;
             width: 400px;
             height: 120px;
-            top: 720px;
+            top: 850px;
             left: 50%;
             line-height: 120px;
             font-size: 45px;
@@ -123,29 +160,47 @@
             opacity: 0;
             transition: 1s;
             z-index: -1;
+
         }
 
-        a:hover{
+        a:hover {
             animation: stream 8s infinite alternate linear;
         }
-        a:hover::before{
+
+        a:hover::before {
             animation: stream 8s infinite alternate linear;
             opacity: 1;
         }
 
 
-
     </style>
 </head>
 <body>
-<div class="box">
-    <div class="left"></div>
-    <div class="right"></div>
-    <div class="top"></div>
-    <div class="bottom"></div>
-    <div class="forward"></div>
-    <div class="after"></div>
+<div class="outer">
+    <div class="box" id="outBox">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="forward"></div>
+        <div class="after"></div>
+    </div>
 </div>
-<a>foncen</a>
+
+<a id="paused">静止</a>
 </body>
+<script>
+    window.onload = function () {
+        var el = document.getElementById("paused");
+        el.onclick = function () {
+            if (el.textContent == '静止') {
+                document.getElementById("outBox").classList.add("pause");
+                el.textContent = '旋转';
+            } else {
+                document.getElementById("outBox").classList.remove("pause");
+                el.textContent = '静止';
+            }
+        };
+    };
+</script>
 </html>
